@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Invoice
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+   
+  
+    <div class=" d-flex mt-5" style="flex-wrap: wrap;">
+        <div class="d-flex mb-4 col-md-6">
+            <label for="Invoice_no" class="mt-2 font-weight-bold">Invoice No. : &nbsp&nbsp&nbsp </label>
+            <input type="number" name='Invoice_no' placeholder='0' class="col-md-6 form-control" id="Invoice_no" />
+        </div>
+        <div class="d-flex mb-4 col-md-6">
+            <label for="Invoice_date" class="mt-2 font-weight-bold">Invoice Date : &nbsp&nbsp&nbsp </label>
+            <input type="date" name='Invoice_date' class="col-md-6 form-control" id="Invoice_date" />
+        </div>
+        <div class="d-flex mb-5 col-md-6">
+            <label for="Store" class="mt-2 mr-5 font-weight-bold">Store : &nbsp&nbsp&nbsp </label>
+            <select class="form-control col-md-6" name="Store" id="Store">
+                <option value="Store1">Store1</option>
+                <option value="Store2">Store2</option>
+                <option value="Store3">Store3</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <table class="table  table-bordered table-striped table-hover" id="tab_logic">
+                    <thead style="background-color:#ccc">
+                        <tr>
+                            <th class="text-center" style="width: 10%;"> Item </th>
+                            <th class="text-center" style="width: 10%;"> Unit </th>
+                            <th class="text-center"> Price </th>
+                            <th class="text-center"> Qty </th>
+                            <th class="text-center"> Total </th>
+                            <th class="text-center"> Discount </th>
+                            <th class="text-center"> Net </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id='addr0'>
+                            <td>
+                                <select name='Item' class="form-control">
+                                    <option value="Item1">Item1</option>
+                                    <option value="Item2">Item2</option>
+                                    <option value="Item3">Item3</option>
+
+                                </select>
+                            </td>
+                            <td>
+                                <select name='Item' class="form-control">
+                                    <option value="Unit1">Unit1</option>
+                                    <option value="Unit2">Unit2</option>
+                                    <option value="Unit3">Unit3</option>
+
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" name='price[]' placeholder='Enter Unit Price'
+                                    class="form-control price" step="0.00" min="0" />
+                            </td>
+                            <td>
+                                <input type="number" name='qty[]' placeholder='Enter Qty' class="form-control qty "
+                                    step="0" min="0" />
+                            </td>
+                            <td>
+                                <input type="number" name='total[]' placeholder='0.00' class="form-control total"
+                                    readonly />
+                            </td>
+                            <td>
+                                <input type="number" name='discount[]' placeholder='Enter Discount'
+                                    class="form-control discount" step="0" min="0" />
+                            </td>
+                            <td>
+                                <input type="number" name='net[]' placeholder='0.00' class="form-control net"
+                                    readonly />
+                            </td>
+                        </tr>
+                        <tr id='addr1'></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-12 d-flex flex-row-reverse">
+                <button id='delete_row' class="m-1 pull-right btn text-light btn-danger">Remove Item</button>
+                <button id="add_row" class="m-1 btn btn-primary ">Add Item</button>
+            </div>
+        </div>
+        <div class="row clearfix d-flex flex-row-reverse" style="margin-top:20px">
+            <div class="pull-right col-md-4">
+                <table class="table table-bordered table-hover" id="tab_logic_total">
+                    <tbody>
+                        <tr>
+                            <th class="text-center ">Total</th>
+                            <td class="text-center">
+                                <input type="number" name='sub_total' placeholder='0.00' class="form-control"
+                                    id="sub_total" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center ">Taxes</th>
+                            <td class="text-center">
+                                <div class="input-group mb-2 mb-sm-0">
+                                    <input type="number" class="form-control" id="tax" placeholder="0">
+                                    <div class="input-group-addon font-weight-bold mt-1">&nbsp; %</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center ">Tax Amount</th>
+                            <td class="text-center">
+                                <input type="number" name='tax_amount' id="tax_amount" placeholder='0.00'
+                                    class="form-control" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-center ">Net</th>
+                            <td class="text-center">
+                                <input type="number" name='total_amount' id="total_amount" placeholder='0.00'
+                                    class="form-control" readonly />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="col-md-12 d-flex justify-content-center">
+            <button id="Save" class="m-1 btn btn-success ">Save</button>
+            <button id='delete' class="m-1 pull-right btn btn-danger">Delete</button>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

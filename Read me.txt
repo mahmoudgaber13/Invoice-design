@@ -1,0 +1,18 @@
+How to use :-
+	
+	- Choose Item and unit then enter price, quantity, and discount if ther is a discount 
+	  you will find the total appears as price * quantity and Net as total - discount
+	- you can add items or remove items and this will change the invoice total and net are 
+	  calculated, if ou entered a tax percentage it will increase the invoice Net value 
+
+
+Technologies used :-
+	
+	1- Bootstrap 4, Html 5, CSS 3 for responsive design
+	2- Java script for calculations
+
+
+JavaScript functions:-
+
+	1-calc() calculates each row total and Net values
+	2-calc_total() calculates the overall items in invoice total and Net values 	 
